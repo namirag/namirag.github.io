@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Namira Ganam Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;800&family=Red+Hat+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday-professional: a developer's personal site, confident and clean
+   IDEA a travel search result board: 100+ trips narrowed to the 5 that fit, like the agent she built
+   PICTURE a grid of 120 trip cells with 5 lit up beside a typed query, the hero
+   COLOUR ultramarine field, white cards, coral accent, ink near-black
+   TYPE Red Hat Display 800 + Red Hat Text
+   LAYOUT laptop: title band over a full-width picture; phone: title, picture, buttons stacked */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0c1230);--ink:light-dark(#0f1424,#eef1ff);--soft:light-dark(#4b5270,#b6bde0);--field:light-dark(#1f3fd1,#16248a);--fieldink:#ffffff;--card:light-dark(#ffffff,#141c44);--line:light-dark(#dfe3f3,#26306a);--tint:light-dark(#eef1fd,#111a40);--accent:#ff5a3c;--cell:rgba(255,255,255,.16)}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Red Hat Text",system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"Red Hat Display",system-ui,sans-serif;line-height:1.05;letter-spacing:-.02em;margin:0;text-wrap:balance}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding:clamp(36px,5vw,72px) max(5vw,16px)}
+nav{position:sticky;top:0;z-index:5;background:var(--field);color:var(--fieldink);padding:12px max(5vw,16px)}
+nav .wrap{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center}
+nav b{font-family:"Red Hat Display";font-size:18px;margin-right:auto}
+nav a{text-decoration:none;font-weight:500;opacity:.9;padding:6px 0}
+nav a:hover,nav a:focus-visible{opacity:1;text-decoration:underline;text-underline-offset:4px}
+.hero{background:var(--field);color:var(--fieldink);padding-top:clamp(28px,4vw,56px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:clamp(24px,4vw,56px);align-items:center}
+.hero h1{font-size:clamp(40px,6vw,64px);font-weight:800}
+.hero .role{font-family:"Red Hat Display";font-size:clamp(20px,2.4vw,26px);font-weight:700;margin:14px 0 12px;color:#ffd2c8}
+.hero p{font-size:17px;max-width:34em;margin:0 0 22px;opacity:.95}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:10px;font-weight:600;text-decoration:none;border:2px solid #fff}
+.btn.main{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn:hover,.btn:focus-visible{outline:3px solid #ffd2c8;outline-offset:2px}
+.board{background:rgba(5,12,60,.35);border-radius:18px;padding:clamp(16px,2.4vw,26px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.query{display:flex;align-items:center;gap:10px;background:#fff;color:#0f1424;border-radius:12px;padding:12px 14px;font-weight:500}
+.query svg{flex:none}
+.query .t{font-weight:600}
+.query .caret{width:2px;height:18px;background:var(--accent);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.grid{display:grid;grid-template-columns:repeat(15,minmax(0,1fr));gap:5px;margin:16px 0}
+.grid i{aspect-ratio:1;border-radius:4px;background:var(--cell);transition:background .5s,transform .5s}
+.grid i.on{background:var(--accent);transform:scale(1.08)}
+.legend{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 16px;font-size:14px;opacity:.92}
+.legend b{font-family:"Red Hat Display";font-size:22px;margin-right:6px}
+.picks{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:14px}
+.picks div{background:#fff;color:#0f1424;border-radius:10px;padding:8px 10px;font-size:13px;line-height:1.3;border-top:4px solid var(--accent)}
+.picks div span{display:block;color:#4b5270}
+.caption{font-size:13px;opacity:.8;margin-top:10px}
+h2{font-size:clamp(30px,4vw,42px);margin-bottom:10px}
+.lead{color:var(--soft);font-size:17px;max-width:44em;margin:0 0 28px}
+.proj{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:18px}
+.pass{background:var(--card);border:1px solid var(--line);border-radius:16px;display:grid;grid-template-columns:minmax(0,1fr) 92px;overflow:hidden}
+.pass .main{padding:20px 20px 18px}
+.pass h3{font-size:22px;margin:6px 0 8px}
+.pass .tag{font-size:14px;font-weight:600;color:var(--accent)}
+.pass p{margin:0 0 12px;color:var(--soft)}
+.pass ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.pass li{font-size:13px;background:var(--tint);border-radius:6px;padding:3px 8px}
+.stub{border-left:2px dashed var(--line);background:var(--tint);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:10px;gap:2px}
+.stub b{font-family:"Red Hat Display";font-size:26px;line-height:1;white-space:nowrap}
+.stub span{font-size:13px;color:var(--soft);line-height:1.25}
+.exp{background:var(--tint)}
+.tl{display:grid;gap:16px}
+.job{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.job .when{font-family:"Red Hat Display";font-weight:700;font-size:18px;white-space:nowrap}
+.job h3{font-size:22px}
+.job .org{color:var(--soft);margin:4px 0 10px}
+.job ul{margin:0;padding-left:20px}
+.job li{margin:4px 0}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px}
+.sk{border-top:4px solid var(--field);padding-top:12px}
+.sk h3{font-size:19px;margin-bottom:8px}
+.sk p{margin:0;color:var(--soft)}
+.edu{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;margin-top:34px}
+.edu div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.edu b{display:block;font-family:"Red Hat Display";font-size:18px}
+.edu span{color:var(--soft)}
+footer{background:var(--field);color:var(--fieldink)}
+footer .wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px;align-items:end}
+footer h2{color:#fff}
+footer p{margin:0 0 6px;font-size:17px}
+footer .small{font-size:14px;opacity:.8;margin-top:26px}
+@media(max-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){nav a{font-size:15px}.grid{gap:3px}.picks{grid-template-columns:repeat(2,minmax(0,1fr))}.picks div:nth-child(n+5){grid-column:span 2}.job{grid-template-columns:minmax(0,1fr);gap:6px}footer .wrap{grid-template-columns:minmax(0,1fr)}.pass{grid-template-columns:minmax(0,1fr) 78px}}
+@media(prefers-reduced-motion:reduce){.query .caret{animation:none}.grid i{transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>Namira Ganam</b><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div></nav>
+
+<header class="hero band">
+  <div class="wrap">
+    <div>
+      <h1>Namira Ganam</h1>
+      <div class="role">AI Software Developer · 2026 Applied AI graduate</div>
+      <p>I build AI agents, REST APIs and full-stack features in Python, JavaScript and C#/.NET. At a travel domain software company, I built the search agent that helps clients find the right trip out of hundreds.</p>
+      <div class="btns">
+        <a class="btn main" href="#projects">See my projects</a>
+        <a class="btn" href="https://github.com/namirag">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/namira-ganam-083406240/">LinkedIn</a>
+      </div>
+    </div>
+    <div class="board" aria-label="Illustration of the AI search agent narrowing 120 trips to the top 5">
+      <div class="query">
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="none" stroke="#1f3fd1" stroke-width="2.5"/><path d="M15 15l6 6" stroke="#1f3fd1" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <span>Show me a <span class="t">kids cruise</span></span><span class="caret"></span>
+      </div>
+      <div class="grid" id="grid"></div>
+      <div class="legend"><span><b>100+</b>trips searched</span><span><b>5</b>best matches returned</span></div>
+      <div class="picks" id="picks"></div>
+      <div class="caption">Illustration of how the agent works; trip names are examples.</div>
+    </div>
+  </div>
+</header>
+
+<section class="band" id="projects">
+  <div class="wrap">
+    <h2>Projects</h2>
+    <p class="lead">Work from industry and from my Applied AI and Cloud Computing programs at George Brown College.</p>
+    <div class="proj" id="proj"></div>
+  </div>
+</section>
+
+<section class="band exp" id="experience">
+  <div class="wrap">
+    <h2>Experience</h2>
+    <p class="lead">Full SDLC work in Agile teams: building features, unit testing, debugging production issues and handing tested builds to QA.</p>
+    <div class="tl">
+      <div class="job">
+        <div class="when">2023 – 2024</div>
+        <div>
+          <h3>Junior Full Stack Developer / Data Scientist</h3>
+          <div class="org">Odysseus Solutions Pvt. Ltd., India · travel domain software for B2B, B2C and B2B2C clients</div>
+          <ul>
+            <li>Built the main AI search agent with the OpenAI API and REST APIs, narrowing 100+ trips to the top 5 listings by intent.</li>
+            <li>Developed C#/.NET APIs on Windows for the frontend and Python data-cleaning APIs on Linux that fed them processed data.</li>
+            <li>Moved rigid relational data into MongoDB (NoSQL) with Docker.</li>
+            <li>Used CNN embeddings to find duplicates across 1,000+ images and re-map every airline, hotel and cruise listing to the right picture in one week.</li>
+            <li>Built 3 client dashboards and resolved 3+ tickets and 1 major change daily on 10+ years of legacy data.</li>
+            <li>Supported 50+ clients (10+ major) through daily Scrum, email and Zoom calls, and trained new employees.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when">2025</div>
+        <div>
+          <h3>AI/ML Research Intern</h3>
+          <div class="org">Kinetics Solutions, Toronto, ON · May – Aug 2025</div>
+          <ul><li>Benchmarked AI/ML and LLM tools on cost, reliability and scalability for enterprise use cases; delivered approved recommendations 40–60% ahead of schedule.</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="skills">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <p class="lead">The tools I use day to day.</p>
+    <div class="skills" id="skillgrid"></div>
+    <div class="edu">
+      <div><b>George Brown College, Toronto</b><span>Post-Graduate Diplomas: Cloud Computing Technologies (2026) and Applied AI Solutions (2025)</span></div>
+      <div><b>Maharaja Sayajirao University of Baroda, India</b><span>Master's in Computer Applications (2023) and B.Sc. Mathematics, Honours (2021)</span></div>
+    </div>
+  </div>
+</section>
+
+<footer class="band" id="contact">
+  <div class="wrap">
+    <div>
+      <h2>Let's talk</h2>
+      <p>Open to AI Software Developer and junior developer roles in the GTA.</p>
+    </div>
+    <div>
+      <p>Email: namiraganam@gmail.com</p>
+      <p>Phone: 647-261-2743</p>
+      <p><a href="https://github.com/namirag">GitHub</a> · <a href="https://www.linkedin.com/in/namira-ganam-083406240/">LinkedIn</a></p>
+    </div>
+  </div>
+  <div class="wrap small">Toronto, Ontario · Legally authorized to work in Canada</div>
+</footer>
+
+<script>
+{
+  const projects = [
+    {tag:'Odysseus Solutions', title:'AI travel search agent', text:'An agent built on the OpenAI API and REST APIs that reads what a client is asking for and returns the 5 best trips. A request for a kids cruise returns Disney and other family-friendly cruises. Stored chat history personalizes later answers.', tech:['Python','OpenAI API','REST APIs','MongoDB'], big:'5', small:'picks from 100+ trips'},
+    {tag:'Odysseus Solutions', title:'Duplicate image cleanup', text:'Listings were showing the same picture. A Python deep learning pipeline compared CNN embeddings to find duplicates, then re-mapped every airline, hotel and cruise listing to its correct image.', tech:['Python','CNN embeddings','Deep learning','JavaScript'], big:'1,000+', small:'images fixed in 1 week'},
+    {tag:'Company hackathon', title:'AI attendance detection', text:'An AI system that detects when employees punch in and punch out, built for an Odysseus company hackathon.', tech:['AI detection'], big:'2nd', small:'place'},
+    {tag:'Applied AI project', title:'AI Document Intelligence Platform', text:'Retrieval-augmented generation (RAG) over unstructured documents, with tool design, guardrails and an evaluation set.', tech:['Python','FastAPI','SQL','AWS','RAG'], big:'80–85%', small:'response accuracy'},
+    {tag:'George Brown capstone', title:'AWS 3-tier cloud application', text:'Team lead for the design, development and deployment of a 3-tier data application on AWS.', tech:['AWS','Cloud architecture','Team lead'], big:'1 mo', small:'for a 4-month scope'}
+  ];
+  const skills = [
+    ['AI & ML','AI agents, LLMs, OpenAI API, Azure OpenAI, RAG, prompt engineering, tool calling, Hugging Face, CNNs, PyTorch, TensorFlow, Scikit-Learn'],
+    ['Languages & APIs','Python, JavaScript, TypeScript, SQL, C#/.NET, FastAPI, Flask, REST APIs, enterprise integrations'],
+    ['Data & cloud','SQL Server, MySQL, MongoDB, Pandas, data pipelines, Docker, AWS (EC2, RDS), Azure, Git, CI/CD'],
+    ['Practices','Full-stack development, SDLC, unit testing, debugging, Agile/Scrum, Linux, Windows, macOS, Claude Code'],
+    ['Currently building with','React, Node.js and JavaScript (ES6+) for full-stack web apps']
+  ];
+  const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  document.getElementById('proj').innerHTML = projects.map(p => `<article class="pass"><div class="main"><div class="tag">${esc(p.tag)}</div><h3>${esc(p.title)}</h3><p>${esc(p.text)}</p><ul>${p.tech.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></div><div class="stub"><b>${esc(p.big)}</b><span>${esc(p.small)}</span></div></article>`).join('');
+  document.getElementById('skillgrid').innerHTML = skills.map(s => `<div class="sk"><h3>${esc(s[0])}</h3><p>${esc(s[1])}</p></div>`).join('');
+
+  const picks = [['Disney Wish','4 nights · Bahamas'],['Disney Fantasy','7 nights · Caribbean'],['Royal Caribbean','Family suite · 5 nights'],['Carnival Mardi Gras','Kids club · 6 nights'],['MSC Seashore','Water park · 7 nights']];
+  document.getElementById('picks').innerHTML = picks.map(p => `<div>${esc(p[0])}<span>${esc(p[1])}</span></div>`).join('');
+
+  const grid = document.getElementById('grid');
+  const N = 120, chosen = [17, 38, 64, 86, 103];
+  grid.innerHTML = Array.from({length:N}, (_, i) => `<i class="${chosen.includes(i) ? 'on' : ''}"></i>`).join('');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce) {
+    const cells = grid.querySelectorAll('i');
+    let seed = 7;
+    const rnd = () => (seed = seed * 16807 % 2147483647) / 2147483647;
+    const shuffle = () => {
+      cells.forEach(c => c.classList.remove('on'));
+      const set = new Set();
+      while (set.size < 5) set.add(Math.floor(rnd() * N));
+      set.forEach(i => cells[i].classList.add('on'));
+    };
+    const timer = setInterval(shuffle, 2600);
+    window.addEventListener('pagehide', () => clearInterval(timer));
+  }
+}
+</script>
+</body>
+</html>
